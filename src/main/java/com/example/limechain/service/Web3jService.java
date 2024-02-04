@@ -8,6 +8,8 @@ import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +19,7 @@ public class Web3jService implements Web3Service {
     private String nodeUrl;
 
     @Override
-    public List<Transaction> getTransactions(List<String> transactionHashes) {
+    public List<Transaction> getTransactions(List<String> transactionHashes, String username) {
         Web3j web3j = Web3j.build(new HttpService(nodeUrl)); //TODO: to research how this can be initialized once
         return transactionHashes.stream()
                 .map(element -> {
@@ -34,6 +36,7 @@ public class Web3jService implements Web3Service {
                     assert transactionEth != null;
                     transaction.setHash(transactionEth.getHash());
                     transaction.setBlockHash(transactionEth.getBlockHash());
+                    transaction.setUsers(new ArrayList<>(Collections.singletonList(username)));
                     return transaction;
                 })
                 .collect(Collectors.toList());
