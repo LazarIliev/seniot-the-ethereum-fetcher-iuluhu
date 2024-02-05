@@ -37,6 +37,14 @@ public class Web3jService implements Web3Service {
                     transaction.setHash(transactionEth.getHash());
                     transaction.setBlockHash(transactionEth.getBlockHash());
                     transaction.setUsers(new ArrayList<>(Collections.singletonList(username)));
+                    transaction.setTransactionStatus(transactionEth.getV());
+                    transaction.setBlockNumber(transactionEth.getBlockNumber());
+                    transaction.setFromAddress(transactionEth.getFrom());
+                    transaction.setToAddress(transactionEth.getTo());
+                    transaction.setInput(transactionEth.getInput());
+                    transaction.setValue(transactionEth.getValueRaw());
+                    transaction.setContractAddress(null); // Not sure from where to get this value
+                    transaction.setLogsCount(-1); // Not sure from where to get this value
                     return transaction;
                 })
                 .collect(Collectors.toList());
