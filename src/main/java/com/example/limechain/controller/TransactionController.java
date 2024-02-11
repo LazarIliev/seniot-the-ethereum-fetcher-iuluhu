@@ -1,6 +1,6 @@
 package com.example.limechain.controller;
 
-import com.example.limechain.model.Transaction;
+import com.example.limechain.dto.TransactionResponse;
 import com.example.limechain.service.api.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,18 +20,18 @@ public class TransactionController {
     private final TransactionService transactionService;
 
     @GetMapping("eth")
-    public Set<Transaction> getTransactions(@RequestParam(name = "transactionHashes") List<String> transactionHashes, Principal principal) throws IOException {
+    public Set<TransactionResponse> getTransactions(@RequestParam(name = "transactionHashes") List<String> transactionHashes, Principal principal) throws IOException {
         return transactionService.getTransactions(transactionHashes, principal.getName());
     }
 
     @GetMapping("my")
-    public List<Transaction> getMyTransactions(Principal principal) {
+    public List<TransactionResponse> getMyTransactions(Principal principal) {
         final String username = principal.getName();
         return transactionService.getMy(username);
     }
 
     @GetMapping("all")
-    public List<Transaction> getAll() {
+    public List<TransactionResponse> getAll() {
         return transactionService.getAll();
     }
 }

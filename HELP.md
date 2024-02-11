@@ -1,5 +1,9 @@
 # Getting Started
 
+Use Java 17.
+* First run a gradle command to build the project: `./graldew build`
+* Second start your docker instance and execute this command from the root folder of the project: `docker-compose up`
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
