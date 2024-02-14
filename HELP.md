@@ -1,8 +1,14 @@
 # Getting Started
 
 Use Java 17.
-* First run a gradle command to build the project: `./graldew build`
-* Second start your docker instance and execute this command from the root folder of the project: `docker-compose up`
+
+#### For local development there three options
+* First, is to run the main class of the application
+* Second, is to build and run server as a docker image:
+  * execute this command to build the image `docker build -t limeapi:latest .`
+  * run the image `docker run -p 8080:8080 limeapi:latest`
+* Third, run `docker-compose up`
+
 
 ### Reference Documentation
 For further reference, please consider the following sections:
