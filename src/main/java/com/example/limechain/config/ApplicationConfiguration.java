@@ -15,15 +15,23 @@ public class ApplicationConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user = User.withUsername("user")
-                .password(passwordEncoder().encode("password"))
+        UserDetails alice = User.withUsername("alice")
+                .password(passwordEncoder().encode("alice"))
                 .roles("USER")
                 .build();
-        UserDetails admin = User.withUsername("admin")
-                .password(passwordEncoder().encode("password"))
-                .roles("USER", "ADMIN")
+        UserDetails bob = User.withUsername("bob")
+                .password(passwordEncoder().encode("bob"))
+                .roles("USER")
                 .build();
-        return new InMemoryUserDetailsManager(user, admin);
+        UserDetails carol = User.withUsername("carol")
+                .password(passwordEncoder().encode("carol"))
+                .roles("USER")
+                .build();
+        UserDetails dave = User.withUsername("dave")
+                .password(passwordEncoder().encode("dave"))
+                .roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(alice, bob, carol, dave);
     }
 
     @Bean
